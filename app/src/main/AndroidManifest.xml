@@ -17,7 +17,7 @@
         <activity
             android:name=".ContactsActivity"
             android:exported="false"
-            android:label="Contact a friend"
+            android:label="@string/contactActivityLabel"
             android:parentActivityName=".HomeActivity" />
 
         <meta-data

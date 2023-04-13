@@ -3,6 +3,8 @@
     <string name="loadingText">Loading.....</string>
     <string name="sharedPreferencesName">MOBILITY_HELPER</string>
     <string name="usersCollectionName">users</string>
+    <string name="contactActivityLabel">Contact a friend</string>
+
 
     <string name="loginWelcomeBackText">Welcome Back</string>
     <string name="loginEmailHintText">Enter Email</string>
