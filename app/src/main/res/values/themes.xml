@@ -1,0 +1,29 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.MobilityHelper" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/lightColorPrimary</item>
+        <item name="colorPrimaryVariant">@color/lightColorPrimaryVariant</item>
+        <item name="colorOnPrimary">@color/lightColorOnPrimary</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/lightColorSecondary</item>
+        <item name="colorSecondaryVariant">@color/lightColorSecondaryVariant</item>
+        <item name="colorOnSecondary">@color/lightColorOnSecondary</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Theme.No_ActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/lightColorPrimary</item>
+        <item name="colorPrimaryVariant">@color/lightColorPrimaryVariant</item>
+        <item name="colorOnPrimary">@color/lightColorOnPrimary</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/lightColorSecondary</item>
+        <item name="colorSecondaryVariant">@color/lightColorSecondaryVariant</item>
+        <item name="colorOnSecondary">@color/lightColorOnSecondary</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+</resources>

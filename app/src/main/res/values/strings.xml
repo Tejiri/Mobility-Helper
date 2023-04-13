@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Mobility Helper</string>
+    <string name="loadingText">Loading.....</string>
+    <string name="sharedPreferencesName">MOBILITY_HELPER</string>
+    <string name="usersCollectionName">users</string>
+
+    <string name="loginWelcomeBackText">Welcome Back</string>
+    <string name="loginEmailHintText">Enter Email</string>
+    <string name="loginPasswordHintText">Enter Password</string>
+    <string name="loginButtonText">LOGIN</string>
+    <string name="loginNoAccountText">Don\'t have an account?</string>
+    <string name="loginRegisterText"> Register</string>
+
+    <string name="registrationRegisterAccountText">Register an account</string>
+    <string name="registrationUsernameHintText">Enter Username</string>
+    <string name="registrationFirstnameHintText">Enter Firstname</string>
+    <string name="registrationLastnameHintText">Enter Lastname</string>
+    <string name="registrationPhoneNumberHintText">Enter Phone Number</string>
+    <string name="registrationEmailHintText">Enter Email</string>
+    <string name="registrationPasswordHintText">Enter Password</string>
+    <string name="registrationConfirmPasswordHintText">Confirm Password</string>
+    <string name="registrationRegisterButtonText">Register Account</string>
+    <string name="registrationRadioMaleText">Male</string>
+    <string name="registrationRadioFemaleText">Female</string>
+    <string name="registrationRadioOtherText">Other</string>
+
+    <string name="homeRegisteredDriversText">Registered Drivers</string>
+    <string name="homeStokeTaxisText">Taxis in Stoke</string>
+
+    <string name="recyclerViewTaxiNameHolderText">Ijatomi Taxis</string>
+    <string name="recyclerViewTaxiNumberHolderText">09015184095</string>
+    <string name="recyclerViewTaxiAddressHolderText">New Building, Normacot Rd, Longton, Stoke-on-Trent ST3 1PL</string>
+
+    <string name="recyclerViewDriverNameHolderText">Driver name</string>
+    <string name="recyclerViewDriverPhoneNumberHolderText">Phone Number</string>
+    <!--    <string name="registrationUsernameHintText">Enter Username</string>-->
+    <!--    <string name="registrationFirstnameHintText">Enter Firstname</string>-->
+    <!--    <string name="loginPasswordHintText">Enter Password</string>-->
+    <!--    <string name="loginButtonText">LOGIN</string>-->
+    <!--    <string name="loginNoAccountText">Don\'t have an account?</string>-->
+    <!--    <string name="loginRegisterText"> Register</string>-->
+
+
+</resources>

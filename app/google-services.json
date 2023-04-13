@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "347678078558",
+    "project_id": "mobility-helper-b1517",
+    "storage_bucket": "mobility-helper-b1517.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:347678078558:android:39fd53736cefe161cd26cf",
+        "android_client_info": {
+          "package_name": "com.example.mobilityhelper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "347678078558-m13ndp5plspl5sikilvl14vqnabjgskp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhib8cC6-uNvCOY_B8EDedfC7qiPqr20c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "347678078558-m13ndp5plspl5sikilvl14vqnabjgskp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/menuItemHomePhone"
+        android:icon="@drawable/icon_phone_white_24"
+        android:title="Contact"
+        app:showAsAction="always"
+
+        />
+
+    <item
+        android:id="@+id/menuItemHomeSettings"
+        android:icon="@drawable/icon_settings_white_24"
+        android:title="Contact"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:icon="@drawable/icon_more_vert_white_24"
+        android:title="Modes"
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/menuItemHomeDark"
+                android:title="Dark mode"
+                app:showAsAction="never"
+                />
+
+            <item
+                android:id="@+id/menuItemHomeLight"
+                android:title="Light mode"
+                app:showAsAction="never"
+                />
+
+            <item
+                android:id="@+id/menuItemHomeLogout"
+                android:title="Logout"
+                app:showAsAction="never"
+                />
+
+        </menu>
+
+    </item>
+</menu>

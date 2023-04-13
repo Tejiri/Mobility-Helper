@@ -1,0 +1,65 @@
+[
+  {
+    "name": "Autocab Private Hire Taxis",
+    "address": "New Building, Normacot Rd, Longton, Stoke-on-Trent ST3 1PL",
+    "number": "01782777777",
+    "latitude": 52.98949120543648,
+    "longitude": -2.1307452531835094
+  },
+  {
+    "name": "Magnum Private Hire",
+    "address": "Magnum Private Hire LTD, Sandbach Rd, Stoke-on-Trent ST6 2DU",
+    "number": "01782819819",
+    "latitude": 53.04782533406807,
+    "longitude": -2.1844017139867056
+  },
+  {
+    "name": "City Cabs Stoke",
+    "address": "91 London Rd, Stoke-on-Trent ST4 7QE",
+    "number": "01782888888",
+    "latitude": 53.00241568133439,
+    "longitude": -2.187333848766008
+  },
+  {
+    "name": "A1 Embassy Taxis Stoke LTD",
+    "address": "Winton House, Stoke Rd, Stoke-on-Trent ST4 2RW",
+    "number": "01782222222",
+    "latitude": 53.01097690771657,
+    "longitude": -2.183925735707016
+  },
+  {
+    "name": "Alton Towers CS Taxis & Chauffeur Services",
+    "address": "24 Youlgreave Ave, Stoke-on-Trent ST2 9LF",
+    "number": "07774687190",
+    "latitude": 53.01764162474867,
+    "longitude": -2.1397268419281392
+  },
+  {
+    "name": "Stoke On Trent Taxis",
+    "address": "22 Milton St, Hanley, Stoke-on-Trent ST1 4LE",
+    "number": "01782450450",
+    "latitude": 53.02050593570164,
+    "longitude": -2.185293679097802
+  },
+  {
+    "name": "Intercity Private Hire",
+    "address": "82 Old Town Rd, Hanley, Stoke-on-Trent ST1 2JT",
+    "number": "01782855855",
+    "latitude": 53.03121249399428,
+    "longitude": -2.173448956332532
+  },
+  {
+    "name": "Lucky Seven Taxis - HEAD OFFICE",
+    "address": "UNIT 4, Edensor Rd, Stoke-on-Trent ST3 2NU",
+    "number": "01782333333",
+    "latitude": 52.987376577297695,
+    "longitude": -2.138007759424488
+  },
+  {
+    "name": "just cabs",
+    "address": "Crowther St, Stoke-on-Trent ST4 2ER",
+    "number": "07456509013",
+    "latitude": 53.011587743452814,
+    "longitude": -2.1784797497739583
+  }
+]
