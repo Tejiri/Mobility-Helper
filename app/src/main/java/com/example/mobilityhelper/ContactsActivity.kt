@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.provider.ContactsContract
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +26,8 @@ class ContactsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.rvContacts.layoutManager = LinearLayoutManager(this)
+
+        binding.tvContactsNotGranted.visibility = View.GONE
         getContacts()
 
         binding.etContactSearch.addTextChangedListener(object : TextWatcher {
@@ -59,7 +62,7 @@ class ContactsActivity : AppCompatActivity() {
                 getContacts()
             }
             if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
-
+                binding.tvContactsNotGranted.visibility = View.VISIBLE
             }
         }
 

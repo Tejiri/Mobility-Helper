@@ -128,12 +128,17 @@ class HomeActivity : AppCompatActivity() {
         return when (item.itemId) {
 
             R.id.menuItemHomeDark -> {
-
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                val editor = sharedPreference?.edit()
+                editor?.putBoolean(resources.getString(R.string.sharedPreferencesDarkMode),true)
+                editor?.commit()
                 true
             }
             R.id.menuItemHomeLight -> {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                val editor = sharedPreference?.edit()
+                editor?.putBoolean(resources.getString(R.string.sharedPreferencesDarkMode),false)
+                editor?.commit()
                 true
             }
 

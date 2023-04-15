@@ -2,9 +2,9 @@
     <string name="app_name">Mobility Helper</string>
     <string name="loadingText">Loading.....</string>
     <string name="sharedPreferencesName">MOBILITY_HELPER</string>
+    <string name="sharedPreferencesDarkMode">darkMode</string>
     <string name="usersCollectionName">users</string>
     <string name="contactActivityLabel">Contact a friend</string>
-
 
     <string name="loginWelcomeBackText">Welcome Back</string>
     <string name="loginEmailHintText">Enter Email</string>
@@ -35,7 +35,7 @@
 
     <string name="recyclerViewDriverNameHolderText">Driver name</string>
     <string name="recyclerViewDriverPhoneNumberHolderText">Phone Number</string>
-    <!--    <string name="registrationUsernameHintText">Enter Username</string>-->
+        <string name="contactPermissionNotGrantedText">Permission not granted to read contacts</string>
     <!--    <string name="registrationFirstnameHintText">Enter Firstname</string>-->
     <!--    <string name="loginPasswordHintText">Enter Password</string>-->
     <!--    <string name="loginButtonText">LOGIN</string>-->
