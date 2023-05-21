@@ -4,23 +4,27 @@ import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.Manifest
+import android.content.pm.PackageManager
+import android.location.Location
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.BatteryManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.mobilityhelper.adapters.DriverAdapter
 import com.example.mobilityhelper.adapters.TaxiAdapter
 import com.example.mobilityhelper.databinding.ActivityHomeBinding
-import com.example.mobilityhelper.databinding.ActivityLoginBinding
 import com.example.mobilityhelper.databinding.HomeBottomSheetDialogBinding
-import com.example.mobilityhelper.databinding.RvTaxisBinding
 import com.example.mobilityhelper.models.Taxi
 import com.example.mobilityhelper.models.User
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -44,6 +48,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     val db = Firebase.firestore
 
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
@@ -59,6 +64,55 @@ class HomeActivity : AppCompatActivity() {
 
         setTaxisRecyclerView()
         setDriversRecyclerView()
+
+
+
+        requestUserLocation()
+
+
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            LOCATION_PERMISSION_REQUEST_CODE -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Permission granted
+                } else {
+                    // Permission denied
+                }
+                return
+            }
+        }
+    }
+
+
+    fun requestUserLocation() {
+
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+            && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ),
+                LOCATION_PERMISSION_REQUEST_CODE
+            )
+        }
+
 
     }
 
@@ -130,14 +184,14 @@ class HomeActivity : AppCompatActivity() {
             R.id.menuItemHomeDark -> {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 val editor = sharedPreference?.edit()
-                editor?.putBoolean(resources.getString(R.string.sharedPreferencesDarkMode),true)
+                editor?.putBoolean(resources.getString(R.string.sharedPreferencesDarkMode), true)
                 editor?.commit()
                 true
             }
             R.id.menuItemHomeLight -> {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 val editor = sharedPreference?.edit()
-                editor?.putBoolean(resources.getString(R.string.sharedPreferencesDarkMode),false)
+                editor?.putBoolean(resources.getString(R.string.sharedPreferencesDarkMode), false)
                 editor?.commit()
                 true
             }
@@ -174,11 +228,39 @@ class HomeActivity : AppCompatActivity() {
                     sharedPreference!!.getString("gender", "gender")
                 bottomSheetBinding.tvHomeBottomSheetWifiStatus.text = networkMessage
 
+                fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
+                if (ActivityCompat.checkSelfPermission(
+                        this,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    ) == PackageManager.PERMISSION_GRANTED
+                    && ActivityCompat.checkSelfPermission(
+                        this,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    ) == PackageManager.PERMISSION_GRANTED
+                ) {
+
+                    fusedLocationClient.lastLocation
+                        .addOnSuccessListener { location: Location? ->
+
+                            bottomSheetBinding.tvHomeBottomSheetLatitude.text =
+                                location?.latitude.toString()
+                            bottomSheetBinding.tvHomeBottomSheetLongitude.text =
+                                location?.longitude.toString()
+
+                        }
+                }
+
+
                 dialog.setContentView(bottomSheetBinding.root)
                 dialog.show()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    companion object {
+        const val LOCATION_PERMISSION_REQUEST_CODE = 999
     }
 }
