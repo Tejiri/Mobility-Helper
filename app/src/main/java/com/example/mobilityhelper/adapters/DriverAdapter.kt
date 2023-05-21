@@ -37,8 +37,21 @@ class DriverAdapter(val drivers: ArrayList<User>) :
 
     override fun onBindViewHolder(holder: DriverAdapter.ViewHolder, position: Int) {
         val driver = drivers[position]
-        binding.tvDriverName.text = driver.firstName + " " + driver.lastName
-        binding.tvDriverPhoneNumber.text = driver.phoneNumber
+        val driverFullName = driver.firstName + " " + driver.lastName
+        val driverPhoneNumber = driver.phoneNumber
+        if (driverFullName.length > 14) {
+            binding.tvDriverName.text = driverFullName.substring(0, 10) + "....."
+        } else {
+            binding.tvDriverName.text = driverFullName
+        }
+
+        if (driverPhoneNumber.length > 11) {
+            binding.tvDriverPhoneNumber.text = driverPhoneNumber.substring(0, 8) + "....."
+
+        } else {
+            binding.tvDriverPhoneNumber.text = driverPhoneNumber
+
+        }
 
     }
 
