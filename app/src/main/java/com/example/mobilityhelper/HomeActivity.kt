@@ -65,8 +65,6 @@ class HomeActivity : AppCompatActivity() {
         setTaxisRecyclerView()
         setDriversRecyclerView()
 
-
-
         requestUserLocation()
 
 
@@ -118,7 +116,9 @@ class HomeActivity : AppCompatActivity() {
 
     fun setDriversRecyclerView() {
         var driverArray = ArrayList<User>()
-        db.collection(resources.getString(R.string.usersCollectionName)).get()
+        db.collection(resources.getString(R.string.usersCollectionName))
+            .whereEqualTo("role","driver")
+            .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
                     val user = User(document.data as Map<String, String>)
