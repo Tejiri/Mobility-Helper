@@ -40,6 +40,7 @@ class DriverAdapter(val drivers: ArrayList<User>) :
         val driverFullName = driver.firstName + " " + driver.lastName
         val driverPhoneNumber = driver.phoneNumber
         if (driverFullName.length > 14) {
+
             binding.tvDriverName.text = driverFullName.substring(0, 10) + "....."
         } else {
             binding.tvDriverName.text = driverFullName
