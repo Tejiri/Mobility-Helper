@@ -71,9 +71,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
+        requestCode: Int, permissions: Array<String>, grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
@@ -81,7 +79,7 @@ class HomeActivity : AppCompatActivity() {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     // Permission granted
                 } else {
-                    // Permission denied
+
                 }
                 return
             }
@@ -92,22 +90,17 @@ class HomeActivity : AppCompatActivity() {
     fun requestUserLocation() {
 
         if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-            && ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
+                this, Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this, Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
 
             ActivityCompat.requestPermissions(
-                this,
-                arrayOf(
+                this, arrayOf(
                     Manifest.permission.ACCESS_FINE_LOCATION,
                     Manifest.permission.ACCESS_COARSE_LOCATION
-                ),
-                LOCATION_PERMISSION_REQUEST_CODE
+                ), LOCATION_PERMISSION_REQUEST_CODE
             )
         }
 
@@ -117,9 +110,7 @@ class HomeActivity : AppCompatActivity() {
     fun setDriversRecyclerView() {
         var driverArray = ArrayList<User>()
         db.collection(resources.getString(R.string.usersCollectionName))
-            .whereEqualTo("role","driver")
-            .get()
-            .addOnSuccessListener { result ->
+            .whereEqualTo("role", "driver").get().addOnSuccessListener { result ->
                 for (document in result) {
                     val user = User(document.data as Map<String, String>)
                     driverArray.add(user)
@@ -231,24 +222,31 @@ class HomeActivity : AppCompatActivity() {
                 fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
                 if (ActivityCompat.checkSelfPermission(
-                        this,
-                        Manifest.permission.ACCESS_FINE_LOCATION
-                    ) == PackageManager.PERMISSION_GRANTED
-                    && ActivityCompat.checkSelfPermission(
-                        this,
-                        Manifest.permission.ACCESS_COARSE_LOCATION
+                        this, Manifest.permission.ACCESS_FINE_LOCATION
+                    ) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                        this, Manifest.permission.ACCESS_COARSE_LOCATION
                     ) == PackageManager.PERMISSION_GRANTED
                 ) {
 
-                    fusedLocationClient.lastLocation
-                        .addOnSuccessListener { location: Location? ->
+                    fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
 
-                            bottomSheetBinding.tvHomeBottomSheetLatitude.text =
-                                location?.latitude.toString()
-                            bottomSheetBinding.tvHomeBottomSheetLongitude.text =
-                                location?.longitude.toString()
+                            if (location == null) {
+                                bottomSheetBinding.tvHomeBottomSheetLatitude.text =
+                                    "Latitude not known"
+                                bottomSheetBinding.tvHomeBottomSheetLongitude.text =
+                                    "Longitude not known"
+                            } else {
+                                bottomSheetBinding.tvHomeBottomSheetLatitude.text =
+                                    location?.latitude.toString()
+                                bottomSheetBinding.tvHomeBottomSheetLongitude.text =
+                                    location?.longitude.toString()
+                            }
+
 
                         }
+                } else {
+                    bottomSheetBinding.tvHomeBottomSheetLatitude.text = "Permission not granted"
+                    bottomSheetBinding.tvHomeBottomSheetLongitude.text = "Permission not granted"
                 }
 
 

@@ -10,6 +10,7 @@ import com.example.mobilityhelper.databinding.ActivityLoginBinding
 import com.example.mobilityhelper.models.User
 import com.example.mobilityhelper.ui_components.CustomUI
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -27,6 +28,7 @@ class LoginActivity : AppCompatActivity() {
         super.onStart()
         val currentUser = auth.currentUser
         if(currentUser != null){
+            saveUserToSharedPreferences(currentUser)
             val goToHomePageIntent = Intent(this, HomeActivity::class.java)
             startActivity(goToHomePageIntent)
             finish()
@@ -70,22 +72,8 @@ class LoginActivity : AppCompatActivity() {
 
                     val user = auth.currentUser
                     if (user != null) {
-                        db.collection(resources.getString(R.string.usersCollectionName))
-                            .whereEqualTo("id", user.uid)
-                            .limit(1)
-                            .get().addOnSuccessListener { result ->
-                                saveUserToSharedPreferences(User(result.documents.first().data as Map<String, String>))
+                        saveUserToSharedPreferences(user)
 
-                            }.addOnFailureListener { databaseException ->
-                                binding.cvLoginLoader.visibility = View.INVISIBLE
-                                customUI.createDialog(
-                                    binding.btnLogin,
-                                    "Error",
-                                    " ${databaseException.message}",
-                                    R.drawable.icon_error_red_24
-                                )
-
-                            }
                     }
                 } else {
                     binding.cvLoginLoader.visibility = View.INVISIBLE
@@ -100,22 +88,40 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    fun saveUserToSharedPreferences(userFound: User) {
+    fun saveUserToSharedPreferences(user: FirebaseUser?) {
+        db.collection(resources.getString(R.string.usersCollectionName))
+            .whereEqualTo("id", user?.uid)
+            .limit(1)
+            .get().addOnSuccessListener { result ->
+//                saveUserToSharedPreferences()
 
-        var editor: SharedPreferences.Editor = sharedPreference!!.edit()
-        editor.putString("id", userFound.id)
-        editor.putString("email", userFound.email)
-        editor.putString("firstName", userFound.firstName)
-        editor.putString("gender", userFound.gender)
-        editor.putString("role", userFound.role)
-        editor.putString("phoneNumber", userFound.phoneNumber)
-        editor.putString("username", userFound.username)
-        editor.putString("lastName", userFound.lastName)
-        editor.commit()
+                val userFound = User(result.documents.first().data as Map<String, String>)
 
-        binding.cvLoginLoader.visibility = View.INVISIBLE
-        val goToHomePageIntent = Intent(this, HomeActivity::class.java)
-        startActivity(goToHomePageIntent)
-        finish()
+                var editor: SharedPreferences.Editor = sharedPreference!!.edit()
+                editor.putString("id", userFound.id)
+                editor.putString("email", userFound.email)
+                editor.putString("firstName", userFound.firstName)
+                editor.putString("gender", userFound.gender)
+                editor.putString("role", userFound.role)
+                editor.putString("phoneNumber", userFound.phoneNumber)
+                editor.putString("username", userFound.username)
+                editor.putString("lastName", userFound.lastName)
+                editor.commit()
+
+                binding.cvLoginLoader.visibility = View.INVISIBLE
+                val goToHomePageIntent = Intent(this, HomeActivity::class.java)
+                startActivity(goToHomePageIntent)
+                finish()
+            }.addOnFailureListener { databaseException ->
+                binding.cvLoginLoader.visibility = View.INVISIBLE
+                customUI.createDialog(
+                    binding.btnLogin,
+                    "Error",
+                    " ${databaseException.message}",
+                    R.drawable.icon_error_red_24
+                )
+
+            }
+
     }
 }

@@ -1,7 +1,9 @@
 package com.example.mobilityhelper
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.RadioButton
@@ -107,14 +109,22 @@ class RegistrationActivity : AppCompatActivity() {
                         )
 
                         if (user != null) {
-                            db.collection(resources.getString(R.string.usersCollectionName)).document(user.uid).set(userToSave)
+                            db.collection(resources.getString(R.string.usersCollectionName))
+                                .document(user.uid).set(userToSave)
                             binding.cvRegistrationLoader.visibility = View.INVISIBLE
+
                             customUI.createDialog(
                                 binding.btnRegistration,
                                 "Success",
                                 "Account Registered Successfully",
                                 R.drawable.icon_check_circle_green_24
                             )
+
+                            Handler().postDelayed({
+                                val loginIntent = Intent(this, LoginActivity::class.java)
+                                startActivity(loginIntent)
+                                finish()
+                            }, 1000)
 
                         }
 
